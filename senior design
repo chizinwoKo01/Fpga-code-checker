@@ -1,4 +1,4 @@
-
+import re
 import pyverilog
 from pyverilog.vparser.parser import parse
 from pyverilog import *
