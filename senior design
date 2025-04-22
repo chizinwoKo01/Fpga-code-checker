@@ -37,8 +37,16 @@ def correct_code(text, errorlist):
             print("Fixing empty always sensitivity lists...")
             corrected_code = fix_empty_sensitivity_lists(corrected_code, all_errors)
 
+        output_error_messages(all_errors)
+        output_corrected_code(corrected_code)
     return corrected_code, all_errors
 
+def output_error_messages(errors):
+    print(f"Errors: {errors}")
+    return errors
+
+def output_corrected_code(corrected_code):
+    return corrected_code
 def fix_missing_semicolons(text, all_errors):
     """
     Fix missing semicolons in Verilog code.
@@ -300,7 +308,6 @@ def semicolon_placement(text):
     return errors
 
 
-
 def check_unclosed_brackets(text):
     stack = []
     pairs = {'(': ')', '[': ']', '{': '}'}
@@ -559,8 +566,10 @@ def make_file(text):
 
         print("\nCorrected Code:")
         print(corrected_code)
+        print(all_errors)
 
-        return all_errors, corrected_code
+        return corrected_code, corrections
+    
 
 
 # Function to parse the Verilog file and handle AST
